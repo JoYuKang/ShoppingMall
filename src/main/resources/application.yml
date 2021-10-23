@@ -1,0 +1,33 @@
+server:
+  port: 80
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/shop?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: whdbrkd1!
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    properties:
+      hibernate:
+        # 기존 테이블 삭제 후 테이블 생성
+        # create-drop 기존 테이블 삭제 후 테이블 생성,. 종료 시점에 테이블 삭제
+        ddl-auto: create
+        # 실행되는 쿼리 콘솔 출력
+        show_sql: true
+        # 가독성 높게 포맷팅
+        format_sql: true
+        # 추가적인 주석 표시
+        use_sql_comment: true
+
+# 쿼리에 ?로 출력 되는 바인드 파라미터 출력
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
