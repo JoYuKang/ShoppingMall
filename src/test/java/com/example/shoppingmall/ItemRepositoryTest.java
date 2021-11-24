@@ -3,6 +3,7 @@ package com.example.shoppingmall;
 import com.example.shoppingmall.constant.ItemSellStatus;
 import com.example.shoppingmall.entity.Item;
 import com.example.shoppingmall.entity.QItem;
+import com.example.shoppingmall.repository.ItemRepository;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -18,13 +19,8 @@ import org.thymeleaf.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PrePersist;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @TestPropertySource(locations = "classpath:application-test.properties")
