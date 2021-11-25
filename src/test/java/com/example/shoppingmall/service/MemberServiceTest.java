@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional //같은 테스트를 중복으로 해도 오류가 발생하지 않기 위해서 사용
-@TestPropertySource(locations = "classpath:application-test.properties")
+@TestPropertySource(locations="classpath:application-test.properties")
 class MemberServiceTest {
     @Autowired
     MemberService memberService;

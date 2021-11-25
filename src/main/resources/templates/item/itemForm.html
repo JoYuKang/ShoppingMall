@@ -2,9 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout1}">
-
+<th:block layout:fragment="css">
+    <style>
+        .fieldError {
+            color: #bd2130;
+        }
+    </style>
+</th:block>
 <div layout:fragment="content">
 
-  <h1>메인페이지입니다.</h1>
-
+    <h1>상품 등록 페이지</h1>
 </div>
+</html>
