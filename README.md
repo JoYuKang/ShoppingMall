@@ -12,3 +12,5 @@ querydsl 오류 - UnsupportedOperationException
 해결 방법 - querydsl 버전을 4.1.4 -> 4.4.0 업데이트 
        
 
+### 테이블 설계
+![테이블 설계](https://user-images.githubusercontent.com/46198324/143430003-21fbac38-d186-4262-9543-a1a991d2a23f.jpg)
