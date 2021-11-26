@@ -14,3 +14,6 @@ querydsl 오류 - UnsupportedOperationException
 
 ### 테이블 설계
 ![테이블 설계](https://user-images.githubusercontent.com/46198324/143430003-21fbac38-d186-4262-9543-a1a991d2a23f.jpg)
+
+### DB ERD
+<img width="720" alt="DB_ERD" src="https://user-images.githubusercontent.com/46198324/143571874-e0c20be8-cdc4-4585-ab54-fcbc841e6c30.png">
