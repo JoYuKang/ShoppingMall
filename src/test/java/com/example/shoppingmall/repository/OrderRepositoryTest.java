@@ -34,8 +34,13 @@ class OrderRepositoryTest {
     @Autowired
     ItemRepository itemRepository;
 
+    @Autowired
+    OrderItemRepository orderItemRepository;
+
     @PersistenceContext
     EntityManager entityManager;
+
+
 
     public Item createItem() {
         Item item = new Item();
@@ -99,12 +104,29 @@ class OrderRepositoryTest {
 
 
     }
+
     @Test
     @DisplayName("고아객체 제거 테스트")
-    public void orphanRemovalTest(){
+    public void orphanRemovalTest() {
         Order order = createOrder();
         order.getOrderItems().remove(0);
         entityManager.flush();
     }
 
+    @Test
+    @DisplayName("지연 로딩 테스트")
+    public void lazyLoadingTest() {
+        Order order = this.createOrder();
+        Long orderItemId = order.getOrderItems().get(0).getId();
+        entityManager.flush();
+        entityManager.clear();
+
+
+        OrderItem orderItem = orderItemRepository.findById(orderItemId)
+                .orElseThrow(EntityNotFoundException::new);
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("order class : " + orderItem.getOrder().getClass());
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        orderItem.getOrder().getOrderDate();
+    }
 }
