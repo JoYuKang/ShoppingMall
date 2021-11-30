@@ -13,7 +13,7 @@ public class ItemDto {
 
     private String itemName; // 상품명
 
-    private int price; //가격
+    private Integer price; //가격
 
     private String itemDetail; //상품 상세 설명
 
