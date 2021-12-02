@@ -2,6 +2,7 @@ package com.example.shoppingmall.entity;
 
 
 import com.example.shoppingmall.constant.ItemSellStatus;
+import com.example.shoppingmall.dto.ItemFormDto;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -14,13 +15,13 @@ public class Item extends BaseTimeEntity {
 
     @Id
     @Column(name = "item_id")
-    @GeneratedValue(strategy =GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id; //상품 코드
 
     @Column(nullable = false, length = 50)
     private String itemName; // 상품명
 
-    @Column(name = "price",nullable = false)
+    @Column(name = "price", nullable = false)
     private int price; //가격
 
     @Column(nullable = false)
@@ -33,8 +34,14 @@ public class Item extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private ItemSellStatus itemSellStatus; //상품 판매 상태
 
-//    private LocalDateTime regTime; // 등록 시간
-//
-//    private LocalDateTime updateTime; // 수정 시간
+    public void updateItem(ItemFormDto itemFormDto) {
+        this.itemName = itemFormDto.getItemName();
+        this.itemDetail = itemFormDto.getItemDetail();
+        this.itemSellStatus = itemFormDto.getItemSellStatus();
+        this.price = itemFormDto.getPrice();
+        this.stockNumber = itemFormDto.getStockNumber();
+
+    }
+
 
 }

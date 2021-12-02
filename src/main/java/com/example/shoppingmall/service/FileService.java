@@ -29,7 +29,7 @@ public class FileService {
             deleteFile.delete();
             log.info("파일을 삭제했습니다.");
         }else {
-            log.info("파일이 존제하지 않습니다.");
+            log.info("파일이 존재하지 않습니다.");
         }
 
 
