@@ -12,6 +12,7 @@
 <!--</th:block>-->
 
 <div th:fragment="header">
+
     <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">
@@ -25,23 +26,24 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-                        <a class="nav-link" href="/admin/item/new">상품등록</a>
+                    <li class="nav-item"  sec:authorize="hasAnyAuthority('ROLE_ADMIN')"  >
+                        <a class="nav-link" th:classappend="${#httpServletRequest.getRequestURI() == '/admin/item/new' ? 'active': ''}" href="/admin/item/new">상품등록</a>
                     </li>
                     <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-                        <a class="nav-link" href="/admin/items">상품 관리</a>
+<!--                        수정 필요!-->
+                        <a class="nav-link" href="/admin/items"  th:classappend="${#httpServletRequest.getRequestURI() == '/admin/items' || #httpServletRequest.getContextPath()   == '/admin' ? 'active': ''}"  >상품 관리</a>
                     </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <a class="nav-link" href="/cart">장바구니</a>
+                        <a class="nav-link" href="/cart" th:classappend="${#httpServletRequest.getRequestURI() == '/cart' ? 'active': ''}">장바구니</a>
                     </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <a class="nav-link" href="/order">구매이력</a>
+                        <a class="nav-link" href="/order" th:classappend="${#httpServletRequest.getRequestURI() == '/order' ? 'active': ''}">구매이력</a>
                     </li>
                     <li class="nav-item" sec:authorize="isAnonymous()">
-                        <a class="nav-link" href="/member/login">로그인</a>
+                        <a class="nav-link" href="/member/login" th:classappend="${#httpServletRequest.getRequestURI() == '/member/login' ? 'active': ''}">로그인</a>
                     </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <a class="nav-link" href="/member/logout">로그아웃</a>
+                        <a class="nav-link" href="/member/logout" >로그아웃</a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0" th:action="@{/}" method="get">

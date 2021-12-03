@@ -2,11 +2,15 @@ package com.example.shoppingmall.service;
 
 import com.example.shoppingmall.dto.ItemFormDto;
 import com.example.shoppingmall.dto.ItemImgDto;
+import com.example.shoppingmall.dto.ItemSearchDto;
+import com.example.shoppingmall.dto.MainItemDto;
 import com.example.shoppingmall.entity.Item;
 import com.example.shoppingmall.entity.ItemImg;
 import com.example.shoppingmall.repository.ItemImgRepository;
 import com.example.shoppingmall.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -75,5 +79,14 @@ public class ItemService {
         return item.getId();
     }
 
+    @Transactional(readOnly = true) //읽기전용으로 slave를 호출 DB 부하 감소
+    public Page<Item> getAdminItemPage(ItemSearchDto itemSearchDto, Pageable pageable) {
+        return itemRepository.getAdminItemPage(itemSearchDto, pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<MainItemDto> getMainItemPage(ItemSearchDto itemSearchDto, Pageable pageable){
+        return itemRepository.getMainItemPage(itemSearchDto, pageable);
+    }
 
 }

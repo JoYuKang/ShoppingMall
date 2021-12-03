@@ -15,6 +15,8 @@ public class ItemDto {
 
     private Integer price; //가격
 
+    private String sellStatCd;
+
     private String itemDetail; //상품 상세 설명
 
     private LocalDateTime regTime; // 등록 시간
