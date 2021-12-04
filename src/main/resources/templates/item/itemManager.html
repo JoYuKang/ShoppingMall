@@ -29,17 +29,54 @@
     </script>
 </th:block>
 
+
 <!-- 사용자 CSS 추가 -->
 <th:block layout:fragment="css">
     <style>
+
         select{
             margin-right:10px;
+        }
+        .carousel-inner > .item {
+            height: 600px;
+        }
+
+        .margin {
+            margin-bottom: 10px;
+        }
+
+        .banner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .card-text {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        .center {
+            text-align: center;
         }
     </style>
 </th:block>
 
 <div layout:fragment="content">
-
+    <div id="carouselControls" class="carousel slide margin" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active item">
+                <img class="d-block w-100 banner" src="/css/img/write-bg.jpg" alt="First slide">
+            </div>
+        </div>
+    </div>
     <form th:action="@{'/admin/items/' + ${items.number}}" role="form" method="get" th:object="${items}">
         <table class="table">
             <thead>

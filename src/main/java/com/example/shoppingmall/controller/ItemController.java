@@ -63,26 +63,26 @@ public class ItemController {
         } catch (Exception e) {
             model.addAttribute("errormessage", "존재하지 않는 상품입니다.");
             model.addAttribute("itemFormDto", new ItemFormDto());
-            return "item/itemModForm";
+            return "item/itemForm";
         }
-        return "item/itemModForm";
+        return "item/itemForm";
     }
 
     @PostMapping(value = "/admin/item/{itemId}")
     private String itemUpdate(@Valid ItemFormDto itemFormDto, BindingResult bindingResult, @RequestParam("itemImgFile")
             List<MultipartFile> itemFileList, Model model) {
         if (bindingResult.hasErrors()) {
-            return "item/itemModForm";
+            return "item/itemForm";
         }
         if (itemFileList.get(0).isEmpty() && itemFormDto.getId() == null) {
             model.addAttribute("errormessage", "처음 이미지는 반드시 등록되어야 합니다.");
-            return "item/itemModForm";
+            return "item/itemForm";
         }
         try {
             itemService.updateItem(itemFormDto, itemFileList);
         } catch (Exception e) {
             model.addAttribute("errormessage", "상품 수정 중 오류가 발생!");
-            return "item/itemModForm";
+            return "item/itemForm";
         }
         return "redirect:/";
 
