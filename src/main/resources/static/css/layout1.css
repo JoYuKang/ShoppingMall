@@ -1,22 +1,30 @@
-html{
+html {
 
     position: relative;
     min-height: 100%;
     margin: 0;
 }
-body{
+
+body {
     min-height: 100%;
 }
-.footer{
+
+.footer {
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
-    width: 100%;
-    padding: 15px 0;
+    width: auto;
+    height: 80px;
+    padding: 10px 0;
     text-align: center;
+    background-color: #333333;
+    font-family: "Agency FB", serif;
+    color: aliceblue;
+    margin-top: 50px;
 }
-.content{
+
+.content {
     /*margin: 50px 200px 100px;*/
     margin-bottom: 100px;
     margin-top: 50px;

@@ -67,6 +67,12 @@ public class ItemController {
         }
         return "item/itemForm";
     }
+    @GetMapping(value = "/item/{itemId}")
+    private String itemDtl(Model model,@PathVariable("itemId") Long itemId){
+        ItemFormDto itemFormDto = itemService.getItemDtl(itemId);
+        model.addAttribute("item",itemFormDto);
+        return "item/itemDtl";
+    }
 
     @PostMapping(value = "/admin/item/{itemId}")
     private String itemUpdate(@Valid ItemFormDto itemFormDto, BindingResult bindingResult, @RequestParam("itemImgFile")

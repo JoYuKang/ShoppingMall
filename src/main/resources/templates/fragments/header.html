@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-    <!-- index.html 고유 CSS 추가 -->
-       <th:block layout:fragment="css">
-        <link rel="stylesheet" th:href="@{/css/header.css}" >
-    </th:block>
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+
+    <style>
+        .navbar-position {
+            position: -webkit-sticky;
+            position: sticky;
+        }
+
+
+    </style>
+</th:block>
+
 
 <!-- index.html 고유 스크립트 추가 -->
 <!--<th:block layout:fragment="script">-->
@@ -12,8 +21,7 @@
 <!--</th:block>-->
 
 <div th:fragment="header">
-
-    <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+    <nav class="navbar navbar-expand-sm bg-primary navbar-dark navbar-position">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">
                 <img src="https://e7.pngegg.com/pngimages/861/787/png-clipart-emoji-shopping-cart-shopping-bags-trolleys-emoji-angle-vehicle.png"
@@ -26,24 +34,31 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"  sec:authorize="hasAnyAuthority('ROLE_ADMIN')"  >
-                        <a class="nav-link" th:classappend="${#httpServletRequest.getRequestURI() == '/admin/item/new' ? 'active': ''}" href="/admin/item/new">상품등록</a>
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                        <a class="nav-link"
+                           th:classappend="${#httpServletRequest.getRequestURI() == '/admin/item/new' ? 'active': ''}"
+                           href="/admin/item/new">상품등록</a>
                     </li>
                     <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-<!--                        수정 필요!-->
-                        <a class="nav-link" href="/admin/items"  th:classappend="${#httpServletRequest.getRequestURI() == '/admin/items' || #httpServletRequest.getContextPath()   == '/admin' ? 'active': ''}"  >상품 관리</a>
+                        <!--                        수정 필요!-->
+                        <a class="nav-link" href="/admin/items"
+                           th:classappend="${#httpServletRequest.getRequestURI() == '/admin/items' || #httpServletRequest.getContextPath()   == '/admin' ? 'active': ''}">상품
+                            관리</a>
                     </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <a class="nav-link" href="/cart" th:classappend="${#httpServletRequest.getRequestURI() == '/cart' ? 'active': ''}">장바구니</a>
+                        <a class="nav-link" href="/cart"
+                           th:classappend="${#httpServletRequest.getRequestURI() == '/cart' ? 'active': ''}">장바구니</a>
                     </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <a class="nav-link" href="/order" th:classappend="${#httpServletRequest.getRequestURI() == '/order' ? 'active': ''}">구매이력</a>
+                        <a class="nav-link" href="/order"
+                           th:classappend="${#httpServletRequest.getRequestURI() == '/order' ? 'active': ''}">구매이력</a>
                     </li>
                     <li class="nav-item" sec:authorize="isAnonymous()">
-                        <a class="nav-link" href="/member/login" th:classappend="${#httpServletRequest.getRequestURI() == '/member/login' ? 'active': ''}">로그인</a>
+                        <a class="nav-link" href="/member/login"
+                           th:classappend="${#httpServletRequest.getRequestURI() == '/member/login' ? 'active': ''}">로그인</a>
                     </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <a class="nav-link" href="/member/logout" >로그아웃</a>
+                        <a class="nav-link" href="/member/logout">로그아웃</a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0" th:action="@{/}" method="get">
@@ -52,14 +67,14 @@
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 
                     </form>
-<!--                    <form class="form-inline">-->
-<!--                        <div class="container">-->
-<!--                            <div class="search-box">-->
-<!--                                <input type="text" />-->
-<!--                                <span></span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </form>-->
+                    <!--                    <form class="form-inline">-->
+                    <!--                        <div class="container">-->
+                    <!--                            <div class="search-box">-->
+                    <!--                                <input type="text" />-->
+                    <!--                                <span></span>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </form>-->
                 </form>
             </div>
         </div>

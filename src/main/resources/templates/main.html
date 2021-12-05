@@ -5,14 +5,13 @@
 <!-- 사용자 CSS 추가 -->
 <th:block layout:fragment="css">
     <style>
+
         .carousel-inner > .item {
             height: 600px;
         }
-
         .margin {
             margin-bottom: 10px;
         }
-
         .banner {
             position: absolute;
             top: 0;
@@ -20,11 +19,11 @@
             max-width: 100%;
             height: auto;
         }
-
         .card-text {
             text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
+            font-family: 'Noto Sans KR', sans-serif;
         }
 
         a:hover {
@@ -34,17 +33,94 @@
         .center {
             text-align: center;
         }
+        .lb-wrap {
+            width: 50%;
+            margin: 10px auto;
+            border: 1px solid #000000;
+            position: relative;
+        }
+        .lb-wrap img {
+            width: 100%;
+            vertical-align: middle;
+        }
+        .lb-title-text {
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: absolute;
+            font-family: "Agency FB",serif;
+            font-size: 200px;
+            color: aliceblue;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .lb-text {
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: absolute;
+            font-family: "Agency FB",serif;
+            font-size: 50px;
+            color: burlywood;
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .line{
+            display: flex;
+            flex-basis: 100%;
+            align-items: center;
+            margin: 8px 0px;
+        }
+        .line:before{
+            content: "";
+            flex-grow: 1;
+            margin: 0px 16px;
+            background: rgba(0,0,0,0.35);
+            height: 1px;
+            font-size: 0px;
+            line-height: 0px;
+        }
+        .line:after{
+            content: "";
+            flex-grow: 1;
+            margin: 0px 16px;
+            background: rgba(0,0,0,0.35);
+            height: 1px;
+            font-size: 0px;
+            line-height: 0px;
+        }
+        .lb-title-text-mall{
+            font-family: "Agency FB",serif;
+            font-weight: bold;
+            font-size: 20px;
+            text-align: center;
+            line-height: 40px;
+        }
+        /* Layout(No Edit) */
+        @media(max-width:440px) {
+            .lb-wrap {
+                width: 95%;
+            }
+        }
+        .font-f{
+            font-family: "Arial Black",sans-serif;
+            font-weight: bold;
+        }
     </style>
 </th:block>
 <div layout:fragment="content">
     <div id="carouselControls" class="carousel slide margin" data-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active item">
-                <img class="d-block banner" src="/css/img/home-bg.jpg" alt="First slide">
+            <div class="carousel-item active item lb-wra">
+                <img class="d-block banner lb-image" src="/css/img/home-bg.jpg" alt="First slide">
+                <div class="lb-title-text">Welcome</div>
+                <div class="lb-text">Yukang's Shopping Mall</div>
             </div>
         </div>
     </div>
-    
+    <div class="lb-title-text-mall line">상품 목록</div>
     <input type="hidden" name="searchQuery" th:value="${itemSearchDto.searchQuery}">
     <div th:if="${not #strings.isEmpty(itemSearchDto.searchQuery)}" class="center">
         <p class="h3 font-weight-bold" th:text="${itemSearchDto.searchQuery} + '검색 결과'"></p>
@@ -53,7 +129,7 @@
         <th:block th:each="item, status: ${items.getContent()}">
             <div class="col-md-4 margin">
                 <div class="card">
-                    <a th:href="'/item/' +${item.id}" class="text-dark">
+                    <a th:href="'/item/' +${item.id}" class="text-dark font-f">
                         <img th:src="${item.imgUrl}" class="card-img-top" th:alt="${item.itemName}" height="400">
                         <div class="card-body">
                             <h4 class="card-title">[[${item.itemName}]]</h4>
