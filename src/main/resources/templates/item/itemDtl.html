@@ -123,8 +123,8 @@
             background-color: aliceblue;
             position: fixed;
             right: 50%;
-            top: 180px;
-            margin-right: -720px;
+            top: 220px;
+            margin-right: -680px;
             text-align: center;
             width: 120px;
             line-height: 50px;
@@ -164,8 +164,6 @@
             border-top-right-radius: 20px;
             border-bottom-right-radius: 20px 10px;
             border-bottom-left-radius: 30px;
-
-
         }
     </style>
 </th:block>
@@ -183,7 +181,7 @@
                   class="badge badge-primary mgb-15">
                 판매중
             </span>
-            <span th:unless="${item.itemSellStatus == T(com.example.shoppingmall.constant.ItemSellStatus).SOLD_OUT}"
+            <span th:unless="${item.itemSellStatus != T(com.example.shoppingmall.constant.ItemSellStatus).SOLD_OUT}"
                   class="badge btn-danger mgb-15">
                 품절
             </span>
@@ -234,8 +232,8 @@
              width="800">
     </div>
     <div class="floating">
-        <div class="point" onclick="window.scrollTo({top:location, behavior:'smooth'});">TOP</div>
-        <div class="point" onclick="window.scrollTo(0,5000,{ behavior:'smooth'});"> DOWN</div>
+        <div class="point" onclick="window.scrollTo({top:0, behavior:'smooth'});">TOP</div>
+        <div class="point" onclick="window.scrollTo({top:5000, behavior:'smooth'});"> DOWN</div>
     </div>
 
 
