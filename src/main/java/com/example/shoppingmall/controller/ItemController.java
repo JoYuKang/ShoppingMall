@@ -6,6 +6,7 @@ import com.example.shoppingmall.dto.ItemSearchDto;
 import com.example.shoppingmall.entity.Item;
 import com.example.shoppingmall.service.ItemService;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.connector.RequestFacade;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +18,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.extras.springsecurity5.util.SpringVersionSpecificUtils;
+import org.yaml.snakeyaml.events.CommentEvent;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -63,9 +67,10 @@ public class ItemController {
         } catch (Exception e) {
             model.addAttribute("errormessage", "존재하지 않는 상품입니다.");
             model.addAttribute("itemFormDto", new ItemFormDto());
-            return "item/itemForm";
+            return "item/itemModForm";
         }
-        return "item/itemForm";
+
+        return "item/itemModForm";
     }
     @GetMapping(value = "/item/{itemId}")
     private String itemDtl(Model model,@PathVariable("itemId") Long itemId){
@@ -74,21 +79,22 @@ public class ItemController {
         return "item/itemDtl";
     }
 
+
     @PostMapping(value = "/admin/item/{itemId}")
     private String itemUpdate(@Valid ItemFormDto itemFormDto, BindingResult bindingResult, @RequestParam("itemImgFile")
             List<MultipartFile> itemFileList, Model model) {
         if (bindingResult.hasErrors()) {
-            return "item/itemForm";
+            return "item/itemModForm";
         }
         if (itemFileList.get(0).isEmpty() && itemFormDto.getId() == null) {
             model.addAttribute("errormessage", "처음 이미지는 반드시 등록되어야 합니다.");
-            return "item/itemForm";
+            return "item/itemModForm";
         }
         try {
             itemService.updateItem(itemFormDto, itemFileList);
         } catch (Exception e) {
             model.addAttribute("errormessage", "상품 수정 중 오류가 발생!");
-            return "item/itemForm";
+            return "item/itemModForm";
         }
         return "redirect:/";
 

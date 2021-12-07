@@ -90,7 +90,7 @@
             </thead>
             <tbody>
             <tr th:each="item, status: ${items.getContent()}">
-                <td th:text="${item.id}"></td>
+                <td th:text="${item.id}" ></td>
                 <td>
                     <a th:href="'/admin/item/'+${item.id}" th:text="${item.itemName}"></a>
                 </td>
