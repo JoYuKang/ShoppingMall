@@ -15,12 +15,14 @@ public class OrderItemDto {
 
     private String imgUrl;
 
+    private long itemId;
 
-    public OrderItemDto(OrderItem orderItem,String imgUrl){
+    public OrderItemDto(OrderItem orderItem, String imgUrl) {
         this.itemName = orderItem.getItem().getItemName();
         this.count = orderItem.getCount();
         this.imgUrl = imgUrl;
         this.orderPrice = orderItem.getOrderPrice();
+        this.itemId = orderItem.getItem().getId();
     }
 
 }

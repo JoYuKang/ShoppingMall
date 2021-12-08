@@ -44,6 +44,7 @@ public class Item extends BaseEntity {
 
     }
 
+    //주문 성공
     public void removeStock(int stockNumber) {
         int restStock = this.stockNumber - stockNumber;
         if (restStock < 0) {
@@ -52,4 +53,8 @@ public class Item extends BaseEntity {
         this.stockNumber = restStock;
     }
 
+    //주문 취소
+    public void addStock(int stockNumber){
+        this.stockNumber += stockNumber;
+    }
 }
