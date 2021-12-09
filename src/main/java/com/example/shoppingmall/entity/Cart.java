@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "cart")
-public class Cart {
+public class Cart extends BaseEntity {
 
     @Id
     @Column(name = "cart_id")
@@ -18,6 +18,10 @@ public class Cart {
     @JoinColumn(name = "member_id")
     private Member member;
 
-
+    public static Cart createCart(Member member) {
+        Cart cart = new Cart();
+        cart.setMember(member);
+        return cart;
+    }
 
 }
