@@ -23,8 +23,10 @@ import org.yaml.snakeyaml.events.CommentEvent;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @RequiredArgsConstructor
@@ -37,6 +39,7 @@ public class ItemController {
         model.addAttribute("itemFormDto", new ItemFormDto());
         return "item/itemForm";
     }
+
 
     @PostMapping(value = "/admin/item/new")
     private String itemNew(@Valid ItemFormDto itemFormDto, BindingResult bindingResult, Model model
@@ -72,10 +75,11 @@ public class ItemController {
 
         return "item/itemModForm";
     }
+
     @GetMapping(value = "/item/{itemId}")
-    private String itemDtl(Model model,@PathVariable("itemId") Long itemId){
+    private String itemDtl(Model model, @PathVariable("itemId") Long itemId) {
         ItemFormDto itemFormDto = itemService.getItemDtl(itemId);
-        model.addAttribute("item",itemFormDto);
+        model.addAttribute("item", itemFormDto);
         return "item/itemDtl";
     }
 

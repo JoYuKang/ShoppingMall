@@ -109,7 +109,7 @@ public class CartService {
                     .orElseThrow(EntityNotFoundException::new);
 
             OrderDto orderDto = new OrderDto();
-            orderDto.setItemId(cartItem.getId());
+            orderDto.setItemId(cartItem.getItem().getId());
             orderDto.setCount(cartItem.getCount());
             orderDtoList.add(orderDto);
         }
@@ -124,6 +124,4 @@ public class CartService {
 
 
     }
-
-
 }

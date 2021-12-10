@@ -9,6 +9,9 @@
             position: -webkit-sticky;
             position: sticky;
         }
+        .navbar{
+            color: #bd2130;
+        }
     </style>
 </th:block>
 
@@ -22,7 +25,6 @@
 </th:block>
 
 <div th:fragment="header">
-
     <nav class="navbar navbar-expand-sm bg-primary navbar-dark navbar-position">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">
@@ -44,7 +46,7 @@
                     <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
                         <!--                        수정 필요  #httpServletRequest.getContextPath() !-->
                         <a class="nav-link" href="/admin/items"
-                           th:classappend="${#httpServletRequest.getRequestURI() == '/admin/items' || #httpServletRequest.getRequestURI()== '/admin/item/2'  ? 'active': ''}"
+                           th:classappend="${#httpServletRequest.getRequestURI() == '/admin/items' || #httpServletRequest.getHttpServletMapping()== '/admin/item/2'  ? 'active': ''}"
                         >
                             상품 관리 </a>
                     </li>
