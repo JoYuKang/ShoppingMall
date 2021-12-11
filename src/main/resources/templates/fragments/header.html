@@ -9,8 +9,9 @@
             position: -webkit-sticky;
             position: sticky;
         }
-        .navbar{
-            color: #bd2130;
+
+        .nav-link {
+            width: 2300px;
         }
     </style>
 </th:block>
@@ -25,7 +26,7 @@
 </th:block>
 
 <div th:fragment="header">
-    <nav class="navbar navbar-expand-sm bg-primary navbar-dark navbar-position">
+    <nav class="navbar navbar-expand-sm navbar-dark navbar-position ">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">
                 <img src="https://cdn.pixabay.com/photo/2015/12/23/01/14/edit-1105049_1280.png"
@@ -36,8 +37,16 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <form class="form-inline my-2 my-lg-1 " th:action="@{/}" method="get">
+                <form class="form-inline ">
+                    <input class="all input_search" type="search" placeholder="Search"
+                           aria-label="Search">             <!--검색창-->
+                </form>
+            </form>
+
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
                     <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
                         <a class="nav-link"
                            th:classappend="${#httpServletRequest.getRequestURI() == '/admin/item/new' ? 'active': ''}"
@@ -66,12 +75,7 @@
                         <a class="nav-link" href="/member/logout">로그아웃</a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0" th:action="@{/}" method="get">
-                    <form class="form-inline">
-                        <input class="form-control mr-sm-2 search-tag" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                </form>
+
             </div>
         </div>
     </nav>
