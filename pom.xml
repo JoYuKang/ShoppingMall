@@ -15,6 +15,8 @@
     <description>ShoppingMall</description>
     <properties>
         <java.version>11</java.version>
+        <Marven.compiler.source>11</Marven.compiler.source>
+        <Marven.compiler.target>11</Marven.compiler.target>
     </properties>
     <dependencies>
 
@@ -107,6 +109,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>2.4.3</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -140,7 +148,17 @@
                     </execution>
                 </executions>
             </plugin>
-
+            <!-- 추가할 부분 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <verbose>true</verbose>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
