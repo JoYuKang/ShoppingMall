@@ -3,18 +3,28 @@
 ### 개발 기간 
  :baby_chick: 2021-11-20 ~ 2021-12-12
 
-### 기술 스택 
+### 🔧 기술 스택 🔧
  <img src="https://img.shields.io/badge/Java-007396?style=flat-square&logo=Java&logoColor=white"/></a>
 <img src="https://img.shields.io/badge/Mysql-E6B91E?style=flat-square&logo=MySql&logoColor=white"/></a>
  <img alt="Spring" src ="https://img.shields.io/badge/Spring-6DB33F.svg?&style=flat-square&logo=Spring&logoColor=white"/></a>
 
- ####  :hotsprings: 이슈 :hotsprings:
-
-querydsl 오류 - UnsupportedOperationException       
-해결 방법 - querydsl 버전을 4.1.4 -> 4.4.0 업데이트 
-       
-
-### :bulb: 테이블 설계
+### 🎮 기능 구현 🎮
+ #### 공통 기능
+  - 회원가입
+  - 로그인
+  #### 관리자 기능
+   - 상품 등록
+   - 상품 수정
+   - 상품 삭제
+   - 이미지 등록
+  #### 유저
+   - 상품 구매
+   - 상품 장바구니 넣기
+   - 장바구니 상품 구매
+   - 구매 기록 확인
+   - 상품 구메 취소
+   
+### :bulb: 초기 테이블 설계 과정
 ![테이블 설계](https://user-images.githubusercontent.com/46198324/143430003-21fbac38-d186-4262-9543-a1a991d2a23f.jpg)
 
 ### :mag_right: 초기 DB ERD 
