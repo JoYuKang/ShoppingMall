@@ -12,6 +12,7 @@
     <artifactId>ShoppingMall</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>ShoppingMall</name>
+    <packaging>jar</packaging>
     <description>ShoppingMall</description>
     <properties>
         <java.version>11</java.version>

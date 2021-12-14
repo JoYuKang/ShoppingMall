@@ -2,17 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout1}">
+<head>
+    <title>YK Shopping Mall</title>
+    <link rel="shortcut icon" type="image⁄x-icon" href="https://cdn.pixabay.com/photo/2015/12/23/01/14/edit-1105049_1280.png">
+</head>
 <!-- 사용자 CSS 추가 -->
 <th:block layout:fragment="css">
     <style>
         .carousel-inner > .item {
             height: 600px;
         }
-
         .margin {
             margin-bottom: 10px;
         }
-
         .banner {
             position: absolute;
             top: 0;
@@ -20,7 +22,6 @@
             max-width: 100%;
             height: auto;
         }
-
         .card-text {
             text-overflow: ellipsis;
             white-space: nowrap;
