@@ -9,9 +9,11 @@
         }
     </style>
 </th:block>
+
 <head>
     <title>YK Shopping Mall</title>
-    <link rel="shortcut icon" type="image⁄x-icon" href="https://cdn.pixabay.com/photo/2015/12/23/01/14/edit-1105049_1280.png">
+    <link rel="shortcut icon" type="image⁄x-icon"
+          href="https://cdn.pixabay.com/photo/2015/12/23/01/14/edit-1105049_1280.png">
 </head>
 <div layout:fragment="content">
     <form action="/member/login" role="form" method="post">
@@ -26,8 +28,14 @@
             <input type="password" name="password" id="password" class="form-control" placeholder="비밀번호를 입력해주세요">
 
         </div>
+
         <p th:if="${loginErrorMsg}" class="error" th:text="${loginErrorMsg}"></p>
+
         <div style="text-align: center">
+            <!--        카카오 로그인 부분 -->
+            <a id="custom-login-btn" href="https://kauth.kakao.com/oauth/authorize?client_id=250930d8d97ff9d3b375782381f68f33&redirect_uri=http://localhost/member/kakao/callback&response_type=code">
+                <img src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="170"/>
+            </a>
             <button class="btn btn-primary ">Login</button>
             <button type="button" class="btn btn-primary " onclick="location.href='/member/new'">Sign Up</button>
         </div>

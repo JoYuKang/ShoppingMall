@@ -1,0 +1,27 @@
+클라이언트 키 : 250930d8d97ff9d3b375782381f68f33
+
+로그인 콜백 주소 
+http://localhost:8080/member/kakao/callback
+
+카카오로 받을 정보 : 닉네임(profile_nickname) - 필수, 이메일(account_email) - 선택
+
+로그인 요청 주소 (GET)
+https://kauth.kakao.com/oauth/authorize?client_id=e5ac98e3c8b47880483f14b964025bf9&redirect_uri=http://localhost:8080/member/kakao/callback&response_type=code
+
+응답받은 코드 
+http://localhost:8080/member/kakao/callback?code=3unFia89efGVCbxLucoKYjE7UqjTzU01_NNm4Vt8NuAz5nMk7DKitpOBa9ChpwQV2DavEgopcFEAAAF-BQUd4A
+
+토큰 발급 요청 주소 (POST) - http body로 데이터 전달 
+Content-type: application/x-www-form-urlencoded;charset=utf-8 (key - value) 
+https://kauth.kakao.com/oauth/token
+Parameter 받을 데이터
+grant_type = authorization_code
+client_id = e5ac98e3c8b47880483f14b964025bf9
+redirect_uri = http://localhost/member/kakao/callback
+code ={동적}
+
+토큰을 통한 사용장 정보 조회 POST
+요청 주소 :  https://kapi.kakao.com/v2/user/me
+Authorization: Bearer {ACCESS_TOKEN}
+Content-type: application/x-www-form-urlencoded;charset=utf-8
+
