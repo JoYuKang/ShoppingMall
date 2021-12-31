@@ -1,5 +1,6 @@
 package com.example.shoppingmall.controller;
 
+import com.example.shoppingmall.constant.Role;
 import com.example.shoppingmall.dto.MemberFormDto;
 import com.example.shoppingmall.entity.KakaoProfile;
 import com.example.shoppingmall.entity.Member;
@@ -65,7 +66,7 @@ public class MemberController {
             model.addAttribute("errorMessage", e.getMessage());
             return "member/memberForm";
         }
-
+        System.out.println("redirect:/");
         return "redirect:/";
     }
 
@@ -153,7 +154,14 @@ public class MemberController {
         UUID tempPassword = UUID.randomUUID();
         System.out.println("email: " + kakaoProfile.kakao_account.getEmail() + "_" + kakaoProfile.getId());
         System.out.println("name: " + kakaoProfile.getProperties().getNickname());
-        System.out.println("password: " + kakaoProfile.getId() +  tempPassword);
+        System.out.println("password: " + kakaoProfile.getId() + tempPassword);
+
+        Member member = new Member();
+        member.setEmail(kakaoProfile.getKakao_account().getEmail());
+        member.setPassword(tempPassword.toString());
+        member.setName(kakaoProfile.getProperties().getNickname());
+        member.setRole(Role.User);
+        memberService.saveMember(member);
 
         return response2.getBody();
     }
