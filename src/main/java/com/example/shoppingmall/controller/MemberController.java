@@ -66,7 +66,7 @@ public class MemberController {
             model.addAttribute("errorMessage", e.getMessage());
             return "member/memberForm";
         }
-        System.out.println("redirect:/");
+
         return "redirect:/";
     }
 
@@ -151,19 +151,19 @@ public class MemberController {
 
         //카카오 계정으로 member 만들기 member email name password
 
-        UUID tempPassword = UUID.randomUUID();
         System.out.println("email: " + kakaoProfile.kakao_account.getEmail() + "_" + kakaoProfile.getId());
         System.out.println("name: " + kakaoProfile.getProperties().getNickname());
-        System.out.println("password: " + kakaoProfile.getId() + tempPassword);
+        System.out.println("password: " + kakaoProfile.getId());
 
         Member member = new Member();
         member.setEmail(kakaoProfile.getKakao_account().getEmail());
-        member.setPassword(tempPassword.toString());
+        member.setPassword(passwordEncoder.encode(kakaoProfile.getId().toString()));
         member.setName(kakaoProfile.getProperties().getNickname());
         member.setRole(Role.User);
-        memberService.saveMember(member);
+        memberService.saveKakaoMember(member);
+        memberService.loadUserByUsername(member.getEmail());
 
-        return response2.getBody();
+        return "member/memberLoginForm";
     }
 
 
