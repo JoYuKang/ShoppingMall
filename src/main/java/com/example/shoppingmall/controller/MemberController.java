@@ -148,7 +148,6 @@ public class MemberController {
 
         System.out.println(kakaoProfile.getConnected_at());
 
-
         //카카오 계정으로 member 만들기 member email name password
 
         System.out.println("email: " + kakaoProfile.kakao_account.getEmail() + "_" + kakaoProfile.getId());
@@ -161,9 +160,9 @@ public class MemberController {
         member.setName(kakaoProfile.getProperties().getNickname());
         member.setRole(Role.User);
         memberService.saveKakaoMember(member);
-        memberService.loadUserByUsername(member.getEmail());
 
-        return "member/memberLoginForm";
+
+        return "redirect:/";
     }
 
 
