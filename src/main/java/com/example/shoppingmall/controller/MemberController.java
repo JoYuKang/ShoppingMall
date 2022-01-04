@@ -8,15 +8,14 @@ import com.example.shoppingmall.entity.OAuthToken;
 import com.example.shoppingmall.service.MemberService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import lombok.RequiredArgsConstructor;
-import org.json.simple.JSONObject;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,14 +24,9 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.UUID;
 
 @RequestMapping("/member")
 @Controller
@@ -85,7 +79,7 @@ public class MemberController {
     // 카카오 연동정보 조회
     @GetMapping(value = "/kakao/callback")
     public @ResponseBody
-    String kakaoCallback(String code) {
+    RedirectView kakaoCallback(String code) {
 
         // a태그에는 GET방식으로 받지만 POST방식으로 바꿔 줘야하기 때문에 RESTTemplate 사용
         RestTemplate rt = new RestTemplate();
@@ -161,8 +155,16 @@ public class MemberController {
         member.setRole(Role.User);
         memberService.saveKakaoMember(member);
 
+        SecurityContextHolder
+                .getContext()
+                .setAuthentication(new UsernamePasswordAuthenticationToken(
+                        kakaoProfile.getKakao_account().getEmail(),
+                        kakaoProfile.getId().toString(),
+                        AuthorityUtils.createAuthorityList(Role.User.toString())
+                ));
 
-        return "redirect:/";
+
+        return new RedirectView("/");
     }
 
 
