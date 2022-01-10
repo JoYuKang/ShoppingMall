@@ -50,6 +50,6 @@
 ### 구현 화면 
 로그인 후
 <img width="1200" alt="위" src="https://user-images.githubusercontent.com/46198324/145699935-99e0fc08-0978-48f0-a57c-eae81dd1a1b8.png">
-로그인 전
-<img width="1280" alt="main 화면" src="https://user-images.githubusercontent.com/46198324/145699936-ee9f5b27-27d1-4dd5-8318-8cabcaac448a.png">
+로그인 전 + 도메인
+<img width="1280" alt="main 화면" src="https://user-images.githubusercontent.com/46198324/148712276-cc5e6601-a41b-4a37-a3b5-65083f5f777a.png">
 
