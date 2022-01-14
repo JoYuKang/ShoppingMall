@@ -5,6 +5,7 @@ import com.example.shoppingmall.dto.MemberFormDto;
 import com.example.shoppingmall.entity.KakaoProfile;
 import com.example.shoppingmall.entity.Member;
 import com.example.shoppingmall.entity.OAuthToken;
+import com.example.shoppingmall.repository.MemberRepository;
 import com.example.shoppingmall.service.MemberService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,6 +28,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @RequestMapping("/member")
 @Controller
@@ -35,6 +37,7 @@ public class MemberController {
 
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
+    private MemberRepository memberRepository;
 
     String grant_type = "authorization_code";
     String client_id = "250930d8d97ff9d3b375782381f68f33";
@@ -44,6 +47,31 @@ public class MemberController {
     public String memberForm(Model model) {
         model.addAttribute("memberFormDto", new MemberFormDto());
         return "member/memberForm";
+    }
+
+    @GetMapping(value = "/memberCheck")
+    public String memberCheck(Model model) {
+        model.addAttribute("memberFormDto", new MemberFormDto());
+        return "member/memberCheck";
+    }
+
+    @PostMapping(value = "/update")
+    public String updateMember(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model) {
+
+        if (bindingResult.hasErrors()) {
+            return "member/memberCheck";
+        }
+
+        try {
+            Long memberId = memberRepository.findByEmail(memberFormDto.getEmail()).getId();
+            Member member = Member.updateMember(memberFormDto, passwordEncoder);
+            memberService.updateMember(member,memberId);
+        } catch (IllegalStateException e) {
+            model.addAttribute("errorMessage", e.getMessage());
+            return "member/memberForm";
+        }
+
+        return "redirect:/";
     }
 
     @PostMapping(value = "/new")

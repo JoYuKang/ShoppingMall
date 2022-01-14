@@ -20,6 +20,12 @@
         <Marven.compiler.target>11</Marven.compiler.target>
     </properties>
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.5.6</version>
+        </dependency>
 
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>

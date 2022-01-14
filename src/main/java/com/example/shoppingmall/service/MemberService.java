@@ -22,8 +22,14 @@ public class MemberService implements UserDetailsService {
         return memberRepository.save(member);
     }
 
+    public Member updateMember(Member member,Long id) {
+        UpdateValidateDuplicateMember(member);
+        member.setId(id);
+        return memberRepository.save(member);
+    }
+
     public Member saveKakaoMember(Member member) {
-        if(!validateDuplicateKakoMember(member)){
+        if (!validateDuplicateKakoMember(member)) {
             return memberRepository.findByEmail(member.getEmail());
         }
 
@@ -36,6 +42,14 @@ public class MemberService implements UserDetailsService {
             throw new IllegalStateException("이미 가입된 회원입니다.");
         }
     }
+
+    private void UpdateValidateDuplicateMember(Member member) {
+        Member findMember = memberRepository.findByEmail(member.getEmail());
+        if (findMember == null) {
+            throw new IllegalStateException("데이터베이스 오류로 회원 수정이 불가합니다. 관리자에게 연락하세요.");
+        }
+    }
+
 
     private boolean validateDuplicateKakoMember(Member member) {
         Member findMember = memberRepository.findByEmail(member.getEmail());
