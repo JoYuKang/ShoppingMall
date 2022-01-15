@@ -61,6 +61,7 @@ class MemberControllerTest {
         String password = "1234";
         this.createMember(email,password);
 
+
         mockMvc.perform(formLogin().userParameter("email").loginProcessingUrl("/member/login")
                 .user(email).password(password)).andExpect(SecurityMockMvcResultMatchers.authenticated());
     }
@@ -94,6 +95,29 @@ class MemberControllerTest {
         System.out.println("modify user " + member1.getModifiedBy());
 
 
+
+    }
+
+    @Test
+    @DisplayName("정보 수정 확인")
+    @Transactional
+    public void updateMember(){
+
+        this.createMember("sdfsdf@sdfsdf","12341234");
+        Member member = memberRepository.findByEmail("sdfsdf@sdfsdf");
+
+        //수정 전
+        System.out.println(memberRepository.findByEmail("sdfsdf@sdfsdf").getId());
+        System.out.println(memberRepository.findByEmail("sdfsdf@sdfsdf").getName());
+
+
+        member.setName("수정이 되는것인가");
+        memberService.updateMember(member,member.getId());
+
+
+        //수정 후
+        System.out.println(memberRepository.findByEmail("sdfsdf@sdfsdf").getId());
+        System.out.println(memberRepository.findByEmail("sdfsdf@sdfsdf").getName());
 
     }
 

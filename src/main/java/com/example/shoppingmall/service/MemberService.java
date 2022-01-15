@@ -28,6 +28,12 @@ public class MemberService implements UserDetailsService {
         return memberRepository.save(member);
     }
 
+    public Member checkMember(String email) {
+
+        return memberRepository.findByEmail(email);
+    }
+
+
     public Member saveKakaoMember(Member member) {
         if (!validateDuplicateKakoMember(member)) {
             return memberRepository.findByEmail(member.getEmail());
@@ -42,6 +48,10 @@ public class MemberService implements UserDetailsService {
             throw new IllegalStateException("이미 가입된 회원입니다.");
         }
     }
+
+
+
+
 
     private void UpdateValidateDuplicateMember(Member member) {
         Member findMember = memberRepository.findByEmail(member.getEmail());

@@ -49,29 +49,53 @@ public class MemberController {
         return "member/memberForm";
     }
 
+//    @GetMapping(value = "/memberCheck")
+//    public String memberCheck(Model model) {
+//        model.addAttribute("memberFormDto", new MemberFormDto());
+//
+//        return "member/memberCheck";
+//    }
+
     @GetMapping(value = "/memberCheck")
-    public String memberCheck(Model model) {
-        model.addAttribute("memberFormDto", new MemberFormDto());
+    public String memberCheck(Model model, Principal principal) {
+
+        Member member = memberService.checkMember(principal.getName());
+
+        model.addAttribute("memberFormDto", member);
+
         return "member/memberCheck";
     }
+
 
     @PostMapping(value = "/update")
     public String updateMember(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model) {
 
+//        String email = memberFormDto.getEmail();
+//        System.out.println("확인 " + email);
+//        if (memberFormDto.getEmail() == null) {
+//            System.out.println("null");
+//        } else {
+//            System.out.println(memberFormDto.getEmail());
+//        }
         if (bindingResult.hasErrors()) {
             return "member/memberCheck";
         }
 
+
         try {
-            Long memberId = memberRepository.findByEmail(memberFormDto.getEmail()).getId();
+
+            Member memberEmail = memberRepository.findByEmail(email);
+            Long memberId = memberEmail.getId();
+            System.out.println(memberId);
             Member member = Member.updateMember(memberFormDto, passwordEncoder);
-            memberService.updateMember(member,memberId);
+            memberService.updateMember(member, memberId);
+
         } catch (IllegalStateException e) {
             model.addAttribute("errorMessage", e.getMessage());
-            return "member/memberForm";
+            return "member/memberCheck";
         }
 
-        return "redirect:/";
+        return "member/memberCheck";
     }
 
     @PostMapping(value = "/new")
