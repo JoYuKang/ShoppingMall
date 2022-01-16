@@ -1,8 +1,8 @@
 # ShoppingMall
   ## :mortar_board: Spring을 통해 만드는 사이트
 ### 개발 기간 
- :baby_chick: 2021-11-20 ~ 2021-12-12
-
+ :baby_chick: 2021-11-20 ~ 2021-12-12     
+  🛠️ 2021-12 ~ 
 ### 🔧 기술 스택 🔧
  <img src="https://img.shields.io/badge/Java-007396?style=flat-square&logo=Java&logoColor=white"/></a>
  <img src="https://img.shields.io/badge/Mysql-E6B91E?style=flat-square&logo=MySql&logoColor=white"/></a>
@@ -21,6 +21,7 @@
    - 상품 수정
    - 상품 삭제
    - 이미지 등록
+   - 회원 정보 수정
   #### 유저
    - 상품 구매
    - 상품 장바구니 넣기
@@ -29,10 +30,8 @@
    - 상품 구메 취소
 
 ### 추가 구현 예상안
-  - 회원 정보 수정
   - 게시판 기능
   - 게시판 댓글 기능
-  
 
 ### :bulb: 초기 테이블 설계 과정
 ![테이블 설계](https://user-images.githubusercontent.com/46198324/143430003-21fbac38-d186-4262-9543-a1a991d2a23f.jpg)
