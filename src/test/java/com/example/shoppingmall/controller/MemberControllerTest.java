@@ -112,8 +112,6 @@ class MemberControllerTest {
 
 
         member.setName("수정이 되는것인가");
-        memberService.updateMember(member,member.getId());
-
 
         //수정 후
         System.out.println(memberRepository.findByEmail("sdfsdf@sdfsdf").getId());

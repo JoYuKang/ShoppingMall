@@ -22,9 +22,7 @@ public class MemberService implements UserDetailsService {
         return memberRepository.save(member);
     }
 
-    public Member updateMember(Member member,Long id) {
-        UpdateValidateDuplicateMember(member);
-        member.setId(id);
+    public Member updateMember(Member member) {
         return memberRepository.save(member);
     }
 
@@ -50,15 +48,6 @@ public class MemberService implements UserDetailsService {
     }
 
 
-
-
-
-    private void UpdateValidateDuplicateMember(Member member) {
-        Member findMember = memberRepository.findByEmail(member.getEmail());
-        if (findMember == null) {
-            throw new IllegalStateException("데이터베이스 오류로 회원 수정이 불가합니다. 관리자에게 연락하세요.");
-        }
-    }
 
 
     private boolean validateDuplicateKakoMember(Member member) {

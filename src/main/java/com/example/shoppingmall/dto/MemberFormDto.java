@@ -1,16 +1,21 @@
 package com.example.shoppingmall.dto;
 
+import com.example.shoppingmall.constant.Role;
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import javax.annotation.MatchesPattern;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 @Data
 public class MemberFormDto {
+
+    private Long id;
 
     @NotBlank(message = "이름은 필수 입력 값입니다.")
     private String name;
@@ -25,4 +30,8 @@ public class MemberFormDto {
 
     @NotEmpty(message = "주소는 필수 입력 값입니다.")
     private String address;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
 }

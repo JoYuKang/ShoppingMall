@@ -70,25 +70,14 @@ public class MemberController {
     @PostMapping(value = "/update")
     public String updateMember(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model) {
 
-//        String email = memberFormDto.getEmail();
-//        System.out.println("확인 " + email);
-//        if (memberFormDto.getEmail() == null) {
-//            System.out.println("null");
-//        } else {
-//            System.out.println(memberFormDto.getEmail());
-//        }
         if (bindingResult.hasErrors()) {
             return "member/memberCheck";
         }
-
-
         try {
 
-            Member memberEmail = memberRepository.findByEmail(email);
-            Long memberId = memberEmail.getId();
-            System.out.println(memberId);
             Member member = Member.updateMember(memberFormDto, passwordEncoder);
-            memberService.updateMember(member, memberId);
+
+            memberService.updateMember(member);
 
         } catch (IllegalStateException e) {
             model.addAttribute("errorMessage", e.getMessage());

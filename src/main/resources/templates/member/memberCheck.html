@@ -15,6 +15,9 @@
       color: cornflowerblue;
       height: 70px;
     }
+    .point{
+      color: #bd2130;
+    }
   </style>
 </th:block>
 
@@ -41,25 +44,34 @@
     <div class="form-group">
       <label th:for="name">이름 </label>
       <input type="text" class="form-control" th:value="${memberFormDto.getName()}" disabled>
-      <input type="text" th:field="*{name}" class="form-control" th:value="${memberFormDto.getName()}">
+      <input type="text" th:field="*{name}" class="form-control" th:value="${memberFormDto.getName()}" placeholder="수정할 이름을 입력하세요">
       <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">Incorrect data</p>
     </div>
     <div class="form-group">
+      <input type="text" th:field="*{id}" class="form-control" th:value="${memberFormDto.getId()}"  hidden>
+      <p th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="fieldError">Incorrect data</p>
+    </div>
+    <div class="form-group">
+      <input type="text" th:field="*{role}" class="form-control" th:value="${memberFormDto.getRole()}"  hidden>
+      <p th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="fieldError">Incorrect data</p>
+    </div>
+
+    <div class="form-group">
       <label th:for="email">이메일주소</label>
       <input type="email" class="form-control" th:value="${memberFormDto.getEmail()}" disabled>
-      <input type="email" th:field="*{email}" class="form-control" th:value="${memberFormDto.getEmail()}">
+      <input type="email" th:field="*{email}" class="form-control" th:value="${memberFormDto.getEmail()}"  placeholder="수정할 이메일을 입력하세요">
       <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="fieldError">Incorrect data</p>
     </div>
     <div class="form-group">
       <label th:for="address">주소</label>
-      <input type="text" class="form-control" th:value="${memberFormDto.getAddress()}" disabled>
+      <input type="text" class="form-control" th:value="${memberFormDto.getAddress()}"  placeholder="주소 입력이 안되어 있습니다." disabled>
       <input type="text" th:field="*{address}" class="form-control" placeholder="주소를 입력해주세요">
       <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="fieldError">Incorrect data</p>
     </div>
 
     <div class="form-group">
-      <label th:for="password">비밀번호</label>
-      <input type="password" th:field="*{password}" class="form-control" placeholder="비밀번호 입력">
+      <label th:for="password">비밀번호 <span th:class="point"> (비밀번호를 수정하고 싶지 않다면 기존의 비밀번호를 입력하세주세요!) </span></label>
+      <input type="password"  th:field="*{password}" class="form-control" placeholder="비밀번호를 입력하세요">
       <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="fieldError">Incorrect data</p>
     </div>
 

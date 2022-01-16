@@ -45,12 +45,13 @@ public class Member extends BaseEntity {
 
     public static Member updateMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder) {
         Member member = new Member();
+        member.setId(memberFormDto.getId());
         member.setName(memberFormDto.getName());
         member.setEmail(memberFormDto.getEmail());
         member.setAddress(memberFormDto.getAddress());
         String password = passwordEncoder.encode(memberFormDto.getPassword());
         member.setPassword(password);
-        member.setRole(Role.User);
+        member.setRole(memberFormDto.getRole());
         return member;
     }
 
