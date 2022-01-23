@@ -39,10 +39,9 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <form class="form-inline my-2 my-lg-1 " th:action="@{/}" method="get">
-                <form class="form-inline ">
-                    <input class="all input_search" type="search" placeholder="Search"
-                           aria-label="Search">             <!--검색창-->
+            <form class="form-inline my-2 my-lg-1 " th:action="@{/}" method="get" >
+                <form class="form-inline" > <!--검색창-->
+                        <input name="searchQuery" class="all input_search" type="search" placeholder="Search" aria-label="Search">
                 </form>
             </form>
 

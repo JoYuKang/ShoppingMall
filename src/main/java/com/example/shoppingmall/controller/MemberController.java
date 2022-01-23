@@ -179,15 +179,15 @@ public class MemberController {
         }
 
         assert kakaoProfile != null;
-        System.out.println(kakaoProfile.getId());
-
-        System.out.println(kakaoProfile.getConnected_at());
+//        System.out.println(kakaoProfile.getId());
+//
+//        System.out.println(kakaoProfile.getConnected_at());
 
         //카카오 계정으로 member 만들기 member email name password
 
-        System.out.println("email: " + kakaoProfile.kakao_account.getEmail() + "_" + kakaoProfile.getId());
-        System.out.println("name: " + kakaoProfile.getProperties().getNickname());
-        System.out.println("password: " + kakaoProfile.getId());
+//        System.out.println("email: " + kakaoProfile.kakao_account.getEmail() + "_" + kakaoProfile.getId());
+//        System.out.println("name: " + kakaoProfile.getProperties().getNickname());
+//        System.out.println("password: " + kakaoProfile.getId());
 
         Member member = new Member();
         member.setEmail(kakaoProfile.getKakao_account().getEmail());
