@@ -1,12 +1,20 @@
 package com.example.shoppingmall.service;
 
+import com.example.shoppingmall.dto.ItemSearchDto;
+import com.example.shoppingmall.dto.MemberFormDto;
+import com.example.shoppingmall.dto.MemberSearchDto;
+import com.example.shoppingmall.entity.Item;
 import com.example.shoppingmall.entity.Member;
 import com.example.shoppingmall.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -70,4 +78,10 @@ public class MemberService implements UserDetailsService {
         return User.builder().username(member.getEmail()).password(member.getPassword())
                 .roles(member.getRole().toString()).build();
     }
+
+    //맴버 전체 조회
+//    @Transactional(readOnly = true) //읽기전용으로 slave를 호출 DB 부하 감소
+//    public Page<Member> getMemberAll(MemberFormDto memberFormDto, Pageable pageable) {
+//        return memberRepository.getAdminMemberPage(memberFormDto, pageable);
+//    }
 }

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+<!-- 사용자 스크립트 추가 -->
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+
+        $(document).ready(function(){
+            $("#searchBtn").on("click",function(e) {
+                e.preventDefault();
+                page(0);
+            });
+        });
+
+        function page(page){
+            var searchDateType = $("#searchDateType").val();
+            var roleType = $("#roleType").val();
+            var searchQuery = $("#searchQuery").val();
+
+            location.href="/admin/items/" + page + "?searchDateType=" + searchDateType
+                + "&roleType=" + roleType
+                + "&searchQuery=" + searchQuery;
+        }
+
+    </script>
+</th:block>
+
+
+<!-- 사용자 CSS 추가 -->
+<th:block layout:fragment="css">
+    <style>
+
+        select{
+            margin-right:10px;
+        }
+        .carousel-inner > .item {
+            height: 600px;
+        }
+
+        .margin {
+            margin-bottom: 10px;
+        }
+
+        .banner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .card-text {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        .center {
+            text-align: center;
+        }
+    </style>
+</th:block>
+<head>
+    <title>YK Shopping Mall</title>
+    <link rel="shortcut icon" type="image⁄x-icon" href="https://cdn.pixabay.com/photo/2015/12/23/01/14/edit-1105049_1280.png">
+</head>
+<div layout:fragment="content">
+    <div id="carouselControls" class="carousel slide margin" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active item">
+                <img class="d-block w-100 banner" src="/css/img/write-bg.jpg" alt="First slide">
+            </div>
+        </div>
+    </div>
+    <form th:action="@{'/admin/members' + ${members.number}}" role="form" method="get" th:object="${members}">
+        <table class="table">
+            <thead>
+            <tr>
+                <td>맴버아이디</td>
+                <td>맴버명</td>
+                <td>이메일</td>
+                <td>주소</td>
+                <td>역할</td>
+                <td>회원가입일자</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="member, status: ${members.getContent()}">
+                <td th:text="${member.member_id}" ></td>
+                <td>
+                    <a th:href="'/admin/members/'+${member.member_id}" th:text="${member.name}"></a>
+                </td>
+                <td th:text="${member.email}"></td>
+                <td th:text="${member.address}"></td>
+                <td th:text="${member.role}"></td>
+                <td th:text="${#temporals.format(member.regTime, 'yyyy-MM-dd HH:mm')}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div th:with="start=${(members.number/MaxPage)*MaxPage + 1}, end=(${(members.totalPages == 0) ? 1 : (start + (MaxPage - 1) < members.totalPages ? start + (MaxPage - 1) : members.totalPages)})" >
+            <ul class="pagination justify-content-center">
+
+                <li class="page-item" th:classappend="${members.first}?'disabled'">
+                    <a th:onclick="'javascript:page(' + ${members.number - 1} + ')'" aria-label='Previous' class="page-link">
+                        <span aria-hidden='true'>Previous</span>
+                    </a>
+                </li>
+
+                <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${members.number eq page-1}?'active':''">
+                    <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
+                </li>
+
+                <li class="page-item" th:classappend="${members.last}?'disabled'">
+                    <a th:onclick="'javascript:page(' + ${members.number + 1} + ')'" aria-label='Next' class="page-link">
+                        <span aria-hidden='true'>Next</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+<!--        <div class="form-inline justify-content-center" th:object="${memberFormDto}">-->
+<!--            <select th:field="*{created_by}" class="form-control" style="width:auto;">-->
+<!--                <option value="all">전체기간</option>-->
+<!--                <option value="1d">1일</option>-->
+<!--                <option value="1w">1주</option>-->
+<!--                <option value="1m">1개월</option>-->
+<!--                <option value="6m">6개월</option>-->
+<!--                <option value="1y">1년</option>-->
+<!--            </select>-->
+<!--            <select th:field="*{role}" class="form-control" style="width:auto;">-->
+<!--                <option value="Admin">관리자</option>-->
+<!--                <option value="User">사용자</option>-->
+<!--            </select>-->
+<!--            <input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력해주세요">-->
+<!--            <button id="searchBtn" type="submit" class="btn btn-primary">검색</button>-->
+<!--        </div>-->
+    </form>
+
+</div>
+
+</html>

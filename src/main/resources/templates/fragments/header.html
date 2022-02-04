@@ -61,6 +61,10 @@
                             상품 관리 </a>
                     </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" href="/member/members"
+                           th:classappend="${#httpServletRequest.getRequestURI() == '/member/admin/members' ? 'active': ''}">회원조회</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
                         <a class="nav-link" href="/cart"
                            th:classappend="${#httpServletRequest.getRequestURI() == '/cart' ? 'active': ''}">장바구니</a>
                     </li>

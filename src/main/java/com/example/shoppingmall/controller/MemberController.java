@@ -1,7 +1,10 @@
 package com.example.shoppingmall.controller;
 
 import com.example.shoppingmall.constant.Role;
+import com.example.shoppingmall.dto.ItemSearchDto;
 import com.example.shoppingmall.dto.MemberFormDto;
+import com.example.shoppingmall.dto.MemberSearchDto;
+import com.example.shoppingmall.entity.Item;
 import com.example.shoppingmall.entity.KakaoProfile;
 import com.example.shoppingmall.entity.Member;
 import com.example.shoppingmall.entity.OAuthToken;
@@ -10,6 +13,9 @@ import com.example.shoppingmall.service.MemberService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -29,6 +35,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Optional;
 
 @RequestMapping("/member")
 @Controller
@@ -208,5 +215,15 @@ public class MemberController {
         return new RedirectView("/");
     }
 
+    //member 전체 조회
+//    @GetMapping(value = {"/members", "/members/{page}"})
+//    public String memberManage(MemberFormDto memberFormDto, @PathVariable("page") Optional<Integer> page, Model model) {
+//        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 3);
+//        Page<Member> members = memberService.getMemberAll(memberFormDto, pageable);
+//        model.addAttribute("members", members);
+//        model.addAttribute("memberFormDto", memberFormDto);
+//        model.addAttribute("MaxPage", 5);
+//        return "member/memberAll";
+//    }
 
 }
