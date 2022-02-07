@@ -8,5 +8,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface MemberRepositoryCustom {
     //Page<Member> getAdminMemberPage(MemberFormDto memberFormDto, Pageable pageable);
-//    Page<Member> getMemberAll(MemberFormDto memberFormDto, Pageable pageable);
+    // Page<Member> getMemberAll(MemberFormDto memberFormDto, Pageable pageable);
 }

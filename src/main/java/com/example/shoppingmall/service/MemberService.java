@@ -6,6 +6,7 @@ import com.example.shoppingmall.dto.MemberSearchDto;
 import com.example.shoppingmall.entity.Item;
 import com.example.shoppingmall.entity.Member;
 import com.example.shoppingmall.repository.MemberRepository;
+import com.example.shoppingmall.repository.MemberRepositoryCustom;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -80,8 +81,10 @@ public class MemberService implements UserDetailsService {
     }
 
     //맴버 전체 조회
-//    @Transactional(readOnly = true) //읽기전용으로 slave를 호출 DB 부하 감소
-//    public Page<Member> getMemberAll(MemberFormDto memberFormDto, Pageable pageable) {
-//        return memberRepository.getAdminMemberPage(memberFormDto, pageable);
-//    }
+    @Transactional(readOnly = true) //읽기전용으로 slave를 호출 DB 부하 감소
+    public Page<Member> getMemberAll(MemberFormDto memberFormDto, Pageable pageable) {
+       // System.out.println(memberRepository.getMemberAll(memberFormDto, pageable));
+//        return memberRepository.getMemberAll(memberFormDto, pageable);
+        return null;
+    }
 }
