@@ -8,29 +8,22 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Data
-//@Entity
+@Entity
 public class Board extends BaseEntity {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
-//
-//    private String title;
-//
-//    private String Content;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "member_id")
-//    private Member member;
-//
-//    private DeleteStatus isDeleted;
-//
-//
-//    public static Board createBbs(Member member) {
-//        Board board = new Board();
-//        board.setMember(member);
-//        return board;
-//    }
+    @Id
+    @Column(name = "board_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    public static Board createBoard(Member member) {
+        Board board = new Board();
+        board.setMember(member);
+        return board;
+    }
 
 }
