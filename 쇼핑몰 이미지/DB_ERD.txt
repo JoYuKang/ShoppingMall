@@ -1,0 +1,95 @@
+//// -- LEVEL 1
+//// -- Tables and References
+
+// Creating tables
+Table user {
+  id long [pk, increment] // auto-increment
+  name varchar
+  email varchar
+  password varchar
+  address varchar
+  role role
+}
+
+Table item {
+  id long [pk]
+  itemname varchar
+  price int
+  stucknumber int 
+  itemDetail varchar
+  itemSellStatus itemSellStatus
+  regTime LocalDateTime
+  updateTime LocalDateTime
+}
+
+// Creating references
+// You can also define relaionship separately
+// > many-to-one; < one-to-many; - one-to-one
+
+//----------------------------------------------//
+
+//// -- LEVEL 2
+//// -- Adding column settings
+
+Table order_items {
+  id long [pk]
+  order_id order_id [ref: > order.id] // inline relationship (many-to-one)
+  item_id item_id
+  orderPrice int
+  count int [default: 1] // default value
+  regTime LocalDateTime
+  updateTime LocalDateTime
+}
+
+Table order {
+  id int [pk] // primary key
+  user_id user_id [not null]
+  orderStatus orderStatus
+  orderDate LocalDateTime
+  order_items order_items
+  regTime LocalDateTime
+  updateTime LocalDateTime
+}
+
+Table cart {
+  id long [pk]
+  user_id  long
+}
+Table cart_item {
+  id long [pk]
+  cart_id cart
+  item_id item
+  }
+
+//----------------------------------------------//
+
+//// -- Level 3 
+//// -- Enum, Indexes
+
+// Enum for 'item' table below
+Enum itemSellStatus {
+  sell
+  sold_out
+}
+// Enum for 'user' table below
+Enum role {
+  user
+  admin
+}
+Enum orderStatus{
+  order
+  cancel
+}
+
+
+
+
+Ref: "cart_item"."cart_id" < "cart"."id"
+
+Ref: "cart"."user_id" < "user"."id"
+
+Ref: "cart_item"."item_id" < "item"."id"
+
+Ref: "user"."id" - "order"."user_id"
+
+Ref: "order_items"."item_id" < "item"."id"
