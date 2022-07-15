@@ -34,11 +34,10 @@
 ### 추가 구현 예상안
   - 게시판 기능
   - 게시판 댓글 기능
-  - 회원 정보 조회
 
 ### :bulb: 초기 테이블 설계 과정
 ![테이블 설계](https://user-images.githubusercontent.com/46198324/143430003-21fbac38-d186-4262-9543-a1a991d2a23f.jpg)
-
+  
 ### :mag_right: 초기 DB ERD 
 <img width="720" alt="DB_ERD" src="https://user-images.githubusercontent.com/46198324/143571874-e0c20be8-cdc4-4585-ab54-fcbc841e6c30.png">
 
